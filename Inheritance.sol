@@ -1,16 +1,19 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >= 0.7.0 < 0.9.0;
-contract Storage{
-    uint x;
-    function setX(uint newX) public {
-        x = newX;
-    }
-    function getX() public virtual view returns(uint){
-        return  x;
+pragma solidity ^0.8.0;
+
+contract A {
+    function foo() public pure virtual returns (string memory) {
+        return "A";
     }
 }
-contract Child is Storage{
-    function getX() public override view  returns(uint){
-        return x + super.getX();
+// Contracts inherit other contracts by using the keyword 'is'.
+contract B is A {
+    function foo() public pure virtual override returns (string memory) {
+        return "B";
+    }
+}
+contract C is A {
+    function foo() public pure virtual override returns (string memory) {
+        return "C";
     }
 }
